@@ -6,21 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>To Do List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>To Do List App</h1>
+        <h1 class="appTitle">Today</h1>
         <form action="" id="todoForm">
-            <input id="todoInput" type="text">
-            <button type="button" onclick="todoList()">Click Me</button>
+            <input id="todoInput" type="text" placeholder="Create your task here">
+            <button type="button" id="createTask" onclick="todoList()">Add Task</button>
         </form>
         <ol id="todoList">
 
         </ol>
     </div>
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
