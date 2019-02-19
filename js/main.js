@@ -7,37 +7,58 @@ function addTask() {
     }
     else {
         let text = document.createTextNode(item);
-        let newItem = document.createElement("li");
+        let task = document.createElement("li");
         let checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.id = "checkTask";
         checkbox.onclick = function () {
-            finish(newItem);
+            if (checkbox.checked) {
+                task.style.backgroundColor = "#d1d1d1";
+                task.style.color = "#181818";
+
+                let parent = document.getElementById("finishedList");
+                move(parent, task);
+            } else {
+                task.style.backgroundColor = "royalblue";
+                task.style.color = "#fff";
+
+                let parent = document.getElementById("todoList");
+                move(parent, task);
+            }
         }
 
         checkbox.classList.add("check");
-        newItem.classList.add("task");
+        task.classList.add("task");
 
-        newItem.appendChild(checkbox);
-        newItem.appendChild(text);
-        document.getElementById("todoList").appendChild(newItem);
+        document.getElementById("todoTitle").style.display = "block";
+        task.appendChild(checkbox);
+        task.appendChild(text);
+        document.getElementById("todoList").appendChild(task);
+
         document.getElementById("todoInput").value = "";
     }
 }
 
-//change checkbox color
-// function isChecked(elem) {
-//     elem.parentNode.style.color = (elem.checked) ? '#fff' : '#fff';
-// }
-
 //move finished task 
-function finish(newItem) {
-    newItem.id = "finished";
-    document.getElementById("finishedTitle").style.visibility = "visible";
+function move(parent, task) {
+    parent.appendChild(task);
+    console.log(parent.id)
+    removeTitle(parent);
+}
 
-    let moved = document.getElementById("finished");
-    let parent = moved.parentElement;
-    let reference = parent.querySelector("#finishedList");
+function removeTitle(parent) {
+    let todoTitle = document.getElementById("todoTitle");
+    let finishedTitle = document.getElementById("finishedTitle");
 
-    parent.appendChild(moved, reference);
+    if (parent.id = "todoList") {
+        todoTitle.style.display = "block";
+        if (!finishedTitle.hasChildNodes) {
+            finishedTitle.style.display = "none";
+        }
+    } else if (parent.id = "finishedList") {
+        finishedTitle.style.display = "block";
+        if (!todoTitle.hasChildNodes) {
+            todoTitle.style.display = "none";
+        }
+    }
 }

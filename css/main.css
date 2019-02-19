@@ -83,15 +83,22 @@ body {
     margin: 0;
 }
 
-.todoTitle {
+#finishedList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#todoTitle {
     margin-top: 20px;
     color: royalblue;
+    display: none;
 }
 
 #finishedTitle {
     margin-top: 20px;
     color: #d1d1d1;
-    visibility: hidden;
+    display: none;
 }
 
 .task {
@@ -108,11 +115,6 @@ body {
     margin-bottom: 5px;
     border-radius: 5px;
     font-size: 1.4rem;
-}
-
-#finished {
-    background-color: #d1d1d1;
-    color: #181818;
 }
 
 .check {
