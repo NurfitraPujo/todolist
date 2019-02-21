@@ -17,13 +17,25 @@ function addTask() {
                 task.style.color = "#181818";
 
                 let parent = document.getElementById("finishedList");
+                let oldParent = document.getElementById("todoList");
+                document.getElementById("finishedTitle").style.display = "block";
+                console.log(oldParent.childNodes.length);
                 move(parent, task);
+                if (oldParent.childNodes.length < 2) {
+                    document.getElementById("todoTitle").style.display = "none";
+                }
             } else {
                 task.style.backgroundColor = "royalblue";
                 task.style.color = "#fff";
 
                 let parent = document.getElementById("todoList");
+                let oldParent = document.getElementById("finishedList");
+                console.log(oldParent.childNodes.length);
+                document.getElementById("todoTitle").style.display = "block";
                 move(parent, task);
+                if (oldParent.childNodes.length < 2) {
+                    document.getElementById("finishedTitle").style.display = "none";
+                }
             }
         }
 
@@ -42,23 +54,5 @@ function addTask() {
 //move finished task 
 function move(parent, task) {
     parent.appendChild(task);
-    console.log(parent.id)
-    removeTitle(parent);
 }
 
-function removeTitle(parent) {
-    let todoTitle = document.getElementById("todoTitle");
-    let finishedTitle = document.getElementById("finishedTitle");
-
-    if (parent.id = "todoList") {
-        todoTitle.style.display = "block";
-        if (!finishedTitle.hasChildNodes) {
-            finishedTitle.style.display = "none";
-        }
-    } else if (parent.id = "finishedList") {
-        finishedTitle.style.display = "block";
-        if (!todoTitle.hasChildNodes) {
-            todoTitle.style.display = "none";
-        }
-    }
-}
