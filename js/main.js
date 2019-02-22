@@ -3,7 +3,7 @@ function addTask() {
     let item = document.getElementById("todoInput").value;
     if (item == "") {
         //return when the input is empty
-        return;
+        return false;
     }
     else {
         let text = document.createTextNode(item);
@@ -48,6 +48,7 @@ function addTask() {
         document.getElementById("todoList").appendChild(task);
 
         document.getElementById("todoInput").value = "";
+        return false;
     }
 }
 

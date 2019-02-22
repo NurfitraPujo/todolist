@@ -12,9 +12,9 @@
 <body>
     <div class="container">
         <h1 class="appTitle">Today</h1>
-        <form action="" id="todoForm">
-            <input id="todoInput" type="text" placeholder="Create your task here">
-            <button type="button" id="createTask" onclick="addTask()">Add Task</button>
+        <form action="" id="todoForm" onsubmit="return false">
+            <input id="todoInput" type="text" placeholder="Create your task here" onsubmit="addTask()">
+            <button type=" button" id="createTask" onclick="addTask()">Add Task</button>
         </form>
         <h2 id="todoTitle">Unfinished Task</h2>
         <ol id="todoList">
