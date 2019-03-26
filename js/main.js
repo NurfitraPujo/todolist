@@ -1,59 +1,108 @@
-function addTask() {
-    //take value from text input
-    let item = document.getElementById("todoInput").value;
-    if (item == "") {
-        //return when the input is empty
-        return false;
+/*DATE TIME*/
+//check and display current date
+function formatDate() {
+    let d = new Date(),
+        month = d.getMonth(),
+        date = '' + d.getDate(),
+        year = d.getFullYear(),
+        day = d.getDay();
+    if (date.length < 2) date = '0' + date;
+
+    switch (month) {
+        case 0:
+            month = 'Jan';
+            break;
+        case 1:
+            month = 'Feb';
+            break;
+        case 2:
+            month = 'Mar';
+            break;
+        case 3:
+            month = 'Apr';
+            break;
+        case 4:
+            month = 'May';
+            break;
+        case 5:
+            month = 'June';
+            break;
+        case 6:
+            month = 'July';
+            break;
+        case 7:
+            month = 'Aug';
+            break;
+        case 8:
+            month = 'Sept';
+            break;
+        case 9:
+            month = 'Okt';
+            break;
+        case 10:
+            month = 'Nov';
+            break;
+        case 11:
+            month = 'Des';
+            break;
     }
-    else {
-        let text = document.createTextNode(item);
-        let task = document.createElement("li");
-        let checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = "checkTask";
-        checkbox.onclick = function () {
-            if (checkbox.checked) {
-                task.style.backgroundColor = "#d1d1d1";
-                task.style.color = "#181818";
 
-                let parent = document.getElementById("finishedList");
-                let oldParent = document.getElementById("todoList");
-                document.getElementById("finishedTitle").style.display = "block";
-                console.log(oldParent.childNodes.length);
-                move(parent, task);
-                if (oldParent.childNodes.length < 2) {
-                    document.getElementById("todoTitle").style.display = "none";
-                }
-            } else {
-                task.style.backgroundColor = "royalblue";
-                task.style.color = "#fff";
+    switch (day) {
+        case 0:
+            day = 'Sunday';
+            break;
+        case 1:
+            day = 'Monday';
+            break;
+        case 2:
+            day = 'Tuesday';
+            break;
+        case 3:
+            day = 'Wednesday';
+            break;
+        case 4:
+            day = 'Thursday';
+            break;
+        case 5:
+            day = 'Friday';
+            break;
+        case 6:
+            day = 'Saturday';
+            break;
+    }
 
-                let parent = document.getElementById("todoList");
-                let oldParent = document.getElementById("finishedList");
-                console.log(oldParent.childNodes.length);
-                document.getElementById("todoTitle").style.display = "block";
-                move(parent, task);
-                if (oldParent.childNodes.length < 2) {
-                    document.getElementById("finishedTitle").style.display = "none";
-                }
-            }
-        }
+    return day + ', ' + [date, month, year].join(' ');
+};
 
-        checkbox.classList.add("check");
-        task.classList.add("task");
+document.getElementById("date").innerHTML = formatDate();
 
-        document.getElementById("todoTitle").style.display = "block";
-        task.appendChild(checkbox);
-        task.appendChild(text);
-        document.getElementById("todoList").appendChild(task);
+/*CREATE NEW TASK*/
+//query selectors
+var form = document.querySelector(".input-form");
+var trigger = document.querySelector(".add-button");
+var closeButton = document.querySelector(".close-button");
+var input = document.getElementById("todo-input");
+var todoList = document.getElementById("todolist");
 
-        document.getElementById("todoInput").value = "";
+//Event Listeners
+trigger.addEventListener("click", toogleForm);
+closeButton.addEventListener("click", toogleForm);
+
+//function
+function toogleForm() {
+    form.classList.toggle("show-form");
+}
+
+function newTask() {
+    let value = input.value;
+    if (value == "") {
+        return false;
+    } else {
+        let item = document.getElementById("li");
+        item.classList.add("task");
+
+        todoList.appendChild(item).append(value);
+        toogleForm();
         return false;
     }
 }
-
-//move finished task 
-function move(parent, task) {
-    parent.appendChild(task);
-}
-

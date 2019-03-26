@@ -10,21 +10,31 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="appTitle">Today</h1>
-        <form action="" id="todoForm" onsubmit="return false">
-            <input id="todoInput" type="text" placeholder="Create your task here" onsubmit="addTask()">
-            <button type=" button" id="createTask" onclick="addTask()">Add Task</button>
-        </form>
-        <h2 id="todoTitle">Unfinished Task</h2>
-        <ol id="todoList">
-
-        </ol>
-        <h2 id="finishedTitle">Finished Task</h2>
-        <ol id="finishedList">
-
-        </ol>
+    <!--Main app container-->
+    <div class="app-container">
+        <header class="app-header">
+            <div class="title-wrapper">
+                <h1 class="app-title">Morning, Fitra</h1>
+                <p id="date"></p>
+            </div>
+        </header>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" id="add-button" class="add-button">
+            <circle cx="25" cy="25" r="25" fill="#ffb00a" />
+            <line x1="25" y1="13" x2="25" y2="38" class="add-button-line" />
+            <line x1="37.5" y1="25" x2="12.5" y2="25" class="add-button-line" />
+        </svg>
+        <ul id="todolist"></ul>
     </div>
+    <!--Modal Form to input new task-->
+    <form action="" class="input-bar" onsubmit="newTask()">
+        <div class="input-form">
+            <div class="form-content">
+                <span class="close-button">&times;</span>
+                <h4>Create new task:</h4>
+                <input type="text" name="todoInput" id="todo-input" onsubmit="newTask()">
+            </div>
+        </div>
+    </form>
     <script src="js/main.js"></script>
 </body>
 
